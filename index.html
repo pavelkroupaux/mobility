@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+  <title>Mobility · physio routines</title>
+  <meta name="description" content="Guided physiotherapy mobility and flexibility routines. One exercise after another, works offline, installs as an app.">
+  <meta name="theme-color" content="#F5F8F8" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0B100F" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Mobility">
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+  <link rel="icon" href="./icons/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="./icons/icon-192.png" type="image/png" sizes="192x192">
+  <link rel="stylesheet" href="./css/tokens.css">
+  <link rel="stylesheet" href="./css/app.css">
+</head>
+<body>
+  <main id="app" class="app" aria-live="polite"></main>
+  <nav id="nav" class="tabbar" aria-label="Main"></nav>
+  <div id="toast" class="toast" role="status"></div>
+  <noscript><div class="page"><p>Mobility needs JavaScript to run.</p></div></noscript>
+  <script type="module" src="./js/app.js"></script>
+</body>
+</html>

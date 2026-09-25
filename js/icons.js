@@ -1,0 +1,36 @@
+/** Inline SVG icon set (24 × 24, stroke based). */
+const wrap = (inner, extra = '') => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ${extra}>${inner}</svg>`;
+
+export const icons = {
+  home: wrap('<path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v10h5v-6h4v6h5V10"/>'),
+  library: wrap('<rect x="3" y="4" width="6" height="16" rx="1.5"/><rect x="11" y="4" width="6" height="16" rx="1.5"/><path d="m19 5 2 14"/>'),
+  history: wrap('<path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/><path d="M12 8v4l3 2"/>'),
+  settings: wrap('<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/>'),
+  play: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l11-6.5a1 1 0 0 0 0-1.72l-11-6.5A1 1 0 0 0 8 5.5z"/></svg>',
+  pause: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1.2"/><rect x="14" y="5" width="4" height="14" rx="1.2"/></svg>',
+  next: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6.3v11.4a1 1 0 0 0 1.55.83L15 13.6v3.9a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-11a1 1 0 0 0-1-1h-1a1 1 0 0 0-1 1v3.9L7.55 5.47A1 1 0 0 0 6 6.3z"/></svg>',
+  prev: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6.3v11.4a1 1 0 0 1-1.55.83L9 13.6v3.9a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-11a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v3.9l7.45-5.03A1 1 0 0 1 18 6.3z"/></svg>',
+  close: wrap('<path d="M6 6l12 12M18 6 6 18"/>'),
+  back: wrap('<path d="M15 5l-7 7 7 7"/>'),
+  chevron: wrap('<path d="m9 5 7 7-7 7"/>'),
+  check: wrap('<path d="m5 12.5 4.5 4.5L19 7.5"/>', 'stroke-width="2.6"'),
+  plus: wrap('<path d="M12 5v14M5 12h14"/>'),
+  minus: wrap('<path d="M5 12h14"/>'),
+  trash: wrap('<path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/>'),
+  edit: wrap('<path d="M4 20h4l10.5-10.5a2.1 2.1 0 0 0-3-3L5 17v3z"/><path d="m13.5 6.5 3 3"/>'),
+  clock: wrap('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>'),
+  reps: wrap('<path d="M4 12a8 8 0 0 1 14-5.3"/><path d="M18 3v4h-4"/><path d="M20 12a8 8 0 0 1-14 5.3"/><path d="M6 21v-4h4"/>'),
+  list: wrap('<path d="M8 6h13M8 12h13M8 18h13"/><circle cx="4" cy="6" r="1" fill="currentColor"/><circle cx="4" cy="12" r="1" fill="currentColor"/><circle cx="4" cy="18" r="1" fill="currentColor"/>'),
+  up: wrap('<path d="m6 15 6-6 6 6"/>'),
+  down: wrap('<path d="m6 9 6 6 6-6"/>'),
+  info: wrap('<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>'),
+  share: wrap('<path d="M12 3v12"/><path d="m8 7 4-4 4 4"/><path d="M5 12v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7"/>'),
+  download: wrap('<path d="M12 4v11"/><path d="m8 11 4 4 4-4"/><path d="M5 20h14"/>'),
+  flame: wrap('<path d="M12 3s5 5 5 10a5 5 0 0 1-10 0c0-2 1-3.5 2-4.5 0 2 1 3 2 3 0-3 1-5.5 1-8.5z"/>'),
+  sparkle: wrap('<path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/>'),
+  moon: wrap('<path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/>'),
+  sound: wrap('<path d="M4 10v4h4l5 4V6L8 10z"/><path d="M16 9a4 4 0 0 1 0 6"/>'),
+  vibrate: wrap('<rect x="8" y="3" width="8" height="18" rx="2"/><path d="M4 9v6M20 9v6"/>'),
+  more: wrap('<circle cx="6" cy="12" r="1.5" fill="currentColor"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/><circle cx="18" cy="12" r="1.5" fill="currentColor"/>'),
+};
+export const icon = (name) => icons[name] || '';
