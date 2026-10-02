@@ -100,15 +100,18 @@ the rep ring stay in sync.
 
 ## Illustrations (v2)
 
-Flat vector characters in the spirit of modern physio / wellness illustration: a soft organic
-blob (`--ill-blob`) with two leaves behind a figure that has skin, hair, a brand-teal shirt,
-navy trousers and dark shoes with a white sole line. Props are a red Thera-Band
-(`--ill-band`), a yellow yoga block and door knob (`--ill-prop`), a door anchor and an indigo mat.
-All colours are tokens, so the dark theme simply swaps them.
+Flat vector characters in the style of the Freepik physiotherapy set that inspired the app:
+teal top and shorts, bare legs with two-tone skin shading, navy shoes with blue laces, grey
+swept hair, fingered hands, and a coral floor patch with a shadow ellipse under every figure.
+The palette is lifted from that set (`--ill-skin` #EBB68D, `--ill-shirt` #00ABB3,
+`--ill-shorts` #00969E, `--ill-shoe` #00475D, `--ill-lace` #0083AB, `--ill-mat` #FF675E,
+`--ill-band` #FF821D). Props are a Thera-Band, a yoga block, a door anchor with a knob and a
+long mat for floor poses. All colours are tokens, so the dark theme simply swaps them.
 
-Built in `js/illustrations.js` from primitives in a 240 × 240 viewBox: `headFront` / `headSide`
-/ `headTop`, `torsoFront` / `torsoSide`, `legsFront` / `legsSide`, and `arm()` as a two-joint chain
-(shoulder → elbow → hand) with open-palm, fist and grip hands. Three views:
+Built in `js/illustrations.js` from primitives in a 240 × 240 viewBox: `limb()` (skin line plus a
+shadow line along one edge), `headFront` / `headSide` / `headTop`, `torsoFront` / `torsoSide` with
+fold lines, `legsFront` / `legsSide` (shorts, legs, `shoeFront` / `shoeSide`), and `arm()` as a
+two-joint chain (shoulder → elbow → hand) with open, fist and grip hands. Three views:
 
 * **front** for symmetrical and lateral movements (arm circles, raises, pull-aparts, side bends)
 * **side** for sagittal movements (shoulder rolls, forward folds, chin tucks, rollbacks)
