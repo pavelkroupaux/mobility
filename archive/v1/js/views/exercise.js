@@ -6,9 +6,7 @@ import { esc, backButton, areaTag } from '../ui.js';
 export function exerciseView(root, [id]) {
   const ex = getExercise(id);
   if (!ex) { root.innerHTML = `<div class="page"><div class="empty">Exercise not found. <a href="#/library">Library</a></div></div>`; return; }
-  const sets = ex.sets > 1 ? `${ex.sets} sets × ` : '';
-  const tempo = ex.tempoOut ? `${ex.tempoOut} s out · ${ex.tempo - ex.tempoOut} s back` : `${ex.tempo} s per rep`;
-  const dose = ex.mode === 'time' ? `${ex.duration} seconds${ex.sides ? ' each side' : ''}` : `${sets}${ex.reps} reps${ex.sides ? ' each side' : ''} · ${tempo}`;
+  const dose = ex.mode === 'time' ? `${ex.duration} seconds${ex.sides ? ' each side' : ''}` : `${ex.reps} reps${ex.sides ? ' each side' : ''} · ${ex.tempo} s per rep`;
   root.innerHTML = `
     <div class="page page--wide">
       <header class="page-header">${backButton('#/library')}<div class="grow"></div></header>
@@ -17,10 +15,9 @@ export function exerciseView(root, [id]) {
         <div>
           <h1>${esc(ex.name)}</h1>
           <p class="muted mt-2">${esc(ex.summary)}</p>
-          <div class="row mt-4" style="flex-wrap:wrap">
+          <div class="row mt-4">
             <span class="chip">${ex.mode === 'time' ? icon('clock') : icon('reps')} ${esc(dose)}</span>
           </div>
-          ${ex.caution ? `<div class="caution mt-4">${icon('info')}<span>${esc(ex.caution)}</span></div>` : ''}
           <section class="section">
             <div class="section-title"><h2>How to do it</h2></div>
             <div class="cues">${ex.cues.map((c, i) => `<div class="cue"><span class="cue__n">${i + 1}</span><span>${esc(c)}</span></div>`).join('')}</div>

@@ -46,7 +46,7 @@ export function routineView(root, [id]) {
               <span class="item__thumb">${illustration(ex)}</span>
               <span class="item__body">
                 <span class="item__title">${esc(ex.name)}</span>
-                <span class="item__sub">${esc(exerciseDose(ex, it))}${ex.caution ? ' · ⚠ therapist approval' : ''}</span>
+                <span class="item__sub">${esc(exerciseDose(ex, it))}${ex.sides ? ' · left & right' : ''}</span>
               </span>
               ${icon('chevron').replace('<svg', '<svg class="item__chev"')}
             </a>`;

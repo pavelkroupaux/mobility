@@ -9,11 +9,7 @@
  *   duration      seconds, for mode 'time'
  *   reps          count, for mode 'reps'
  *   tempo         seconds per repetition (paces the counter + the animation)
- *   tempoOut      optional: seconds of the "out" part of a rep (the rest of `tempo` is the slow return)
- *   sets          optional: number of sets (the player repeats the exercise with a short rest between sets)
  *   sides         true → the exercise is done for the left side, then the right side
- *   sideLabels    optional: labels for the two passes instead of Left / Right, e.g. ['Clockwise', 'Counter-clockwise']
- *   caution       optional: a warning shown in the player (e.g. "only if approved by your therapist")
  *   illustration  key from js/illustrations.js  (or set `image: 'assets/exercises/x.svg'` to use your own)
  *   options       extra options for the illustration (direction, hand, view)
  *   summary       one-liner shown in lists
@@ -21,10 +17,9 @@
  */
 export const AREAS = {
   shoulders: { label: 'Shoulders', order: 1 },
-  rehab:     { label: 'Pec rehab', order: 2 },
-  back:      { label: 'Back & spine', order: 3 },
-  neck:      { label: 'Neck', order: 4 },
-  hips:      { label: 'Hips', order: 5 },
+  back:      { label: 'Back & spine', order: 2 },
+  neck:      { label: 'Neck', order: 3 },
+  hips:      { label: 'Hips', order: 4 },
 };
 
 export const EXERCISES = [
@@ -100,74 +95,6 @@ export const EXERCISES = [
     illustration: 'arm-raise',
     summary: 'Raise both arms overhead, reach tall, lower with control.',
     cues: ['Start with the arms down by your sides', 'Raise both arms out and up until they point to the ceiling', 'Reach tall without shrugging', 'Lower slowly, feel the shoulder blades glide'],
-  },
-
-  // ---------------- Pec rehab (after pectoralis reconstruction) ----------------
-  // Tempo for all band / rotation work: 2 s out, 3 s back. 2–3 sets of 12–15 reps.
-  // Rule: zero sharp pain, only light muscle work.
-  {
-    id: 'ext-rotation-open',
-    name: 'Shoulder external rotation – open hand',
-    area: 'rehab',
-    mode: 'reps', reps: 12, tempo: 5, tempoOut: 2, sets: 2, sides: true,
-    illustration: 'ext-rotation', options: { hand: 'open' },
-    summary: 'Elbow bent 90° and tucked to the side, palm open. Rotate the forearm outward, return slowly.',
-    cues: ['Elbow at 90°, glued to your side', 'Palm completely open and flat', 'Rotate the forearm outward, away from the body', 'Shoulder stays down and back, don\'t let it creep forward', 'Return slowly: 3 seconds back'],
-  },
-  {
-    id: 'ext-rotation-fist',
-    name: 'Shoulder external rotation – closed fist',
-    area: 'rehab',
-    mode: 'reps', reps: 12, tempo: 5, tempoOut: 2, sets: 2, sides: true,
-    illustration: 'ext-rotation', options: { hand: 'fist' },
-    summary: 'Same rotation with a tight, firm fist to engage the stabilisers around the shoulder.',
-    cues: ['Make a tight, firm fist and keep it squeezed', 'Elbow at 90°, tucked to the side', 'Rotate the forearm outward, slow and controlled', 'The fist stabilises the shoulder joint', 'Return slowly, keep the squeeze'],
-  },
-  {
-    id: 'band-ext-rotation',
-    name: 'Theraband external rotation',
-    area: 'rehab',
-    mode: 'reps', reps: 12, tempo: 5, tempoOut: 2, sets: 2, sides: true,
-    illustration: 'band-ext-rotation',
-    summary: 'Band anchored at waist height, operated arm on the outside. Rotate outward against the band.',
-    cues: ['Anchor the band at waist height, e.g. a door handle', 'Stand sideways, operated arm on the outside', 'Elbow at 90°, firmly against your body', 'Pull by rotating the forearm outward, away from the door', 'Return slowly: never let the band snap the arm back'],
-  },
-  {
-    id: 'band-pull-apart',
-    name: 'Band pull-aparts',
-    area: 'rehab',
-    mode: 'reps', reps: 12, tempo: 5, tempoOut: 2, sets: 2,
-    illustration: 'band-pull-apart',
-    summary: 'Hold the band in front at chest height, open the arms wide, squeeze the shoulder blades.',
-    cues: ['Stand tall, band in both hands at chest height', 'Open the arms wide until the band touches the chest', 'Squeeze the shoulder blades tightly together at the end', 'Shoulders down, away from the ears', 'Don\'t arch the lower back; return slowly'],
-  },
-  {
-    id: 'band-int-rotation',
-    name: 'Theraband internal rotation',
-    area: 'rehab',
-    mode: 'reps', reps: 12, tempo: 5, tempoOut: 2, sets: 2, sides: true,
-    illustration: 'band-int-rotation',
-    caution: 'Only if approved by your therapist. Very light band. Stop immediately at any sharp pain in the chest.',
-    summary: 'Operated arm closer to the anchor. Pull the forearm inward across the body toward the stomach.',
-    cues: ['Stand sideways, operated arm closer to the anchor', 'Elbow at 90°, tucked to the side', 'Pull the band inward, forearm towards the stomach', 'Resistance very light', 'Return slowly; stop at any sharp pain in the chest'],
-  },
-  {
-    id: 'block-circles',
-    name: 'Thoracic circles – hugging a block',
-    area: 'rehab',
-    mode: 'reps', reps: 6, tempo: 6, sides: true, sideLabels: ['Clockwise', 'Counter-clockwise'],
-    illustration: 'block-circles', options: { direction: 1 },
-    summary: 'Stand tall, hug a yoga block to the chest and draw a slow full circle with the upper body.',
-    cues: ['Stand upright, hug the yoga block to your chest with both arms', 'Lean slightly forward, then to the side, back, and round', 'The block and the chest move as one unit', 'Hips stay still, the circle comes from the thoracic spine', 'Slow and controlled, then reverse the direction'],
-  },
-  {
-    id: 'seated-rollback',
-    name: 'Seated oblique rollback – crossed legs',
-    area: 'rehab',
-    mode: 'reps', reps: 8, tempo: 7, tempoOut: 3, sides: true, sideLabels: ['Right leg over', 'Left leg over'],
-    illustration: 'seated-rollback',
-    summary: 'Sit on the floor, cross one leg over the other, brace, and roll back slowly with the deep core.',
-    cues: ['Sit on the floor, cross the top leg over and anchor it', 'Arms reach forward, shoulders relaxed', 'Draw the navel in and roll the pelvis back', 'Lean back slowly as far as the core holds you, no further', 'Come back up slowly, breathe out on the way'],
   },
 
   // ---------------- Back & spine ----------------
@@ -304,14 +231,9 @@ export function exerciseSeconds(ex, overrides = {}) {
   return (overrides.reps ?? ex.reps ?? 10) * (ex.tempo || 3);
 }
 
-/** Human label, e.g. "30 s", "10 reps", "2 × 25 s", "2 sets × 12 reps". */
+/** Human label, e.g. "30 s", "10 reps", "2 × 25 s". */
 export function exerciseDose(ex, overrides = {}) {
   const mode = overrides.mode || ex.mode;
-  const sets = overrides.sets ?? ex.sets ?? 1;
   const base = mode === 'time' ? `${overrides.duration ?? ex.duration} s` : `${overrides.reps ?? ex.reps} reps`;
-  const withSets = sets > 1 ? `${sets} × ${base}` : base;
-  return ex.sides ? `${withSets} per side` : withSets;
+  return ex.sides ? `2 × ${base}` : base;
 }
-
-/** Labels for the two passes of a sided exercise. */
-export const sideLabels = (ex) => ex.sideLabels || ['Left side', 'Right side'];

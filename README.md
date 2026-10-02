@@ -9,14 +9,29 @@ screen on iPhone, iPad and Android.
 
 ## What it does
 
-- **Home** – three built-in routines (Quick reset, Full physio session, Desk break) plus your own custom routines, with streak and weekly stats.
+- **Home** – four built-in routines (Quick reset, Full physio session, Pec rehab, Desk break) plus your own custom routines, with streak and weekly stats.
 - **Player** – Freeletics-style flow: get-ready countdown, one exercise at a time, rep pacing with a tempo ring or a hold timer, rest between exercises, cues that rotate while you move, left/right sides handled automatically, pause/skip/back, sound and vibration cues, keeps the screen awake, completion screen.
-- **Library** – every exercise with an animated illustration, dose and step-by-step cues. "Do just this one" starts it on its own.
+- **Library** – 28 exercises with animated flat-vector illustrations, dose and step-by-step cues. "Do just this one" starts it on its own.
+- **Pec rehab** – the post-surgery programme: external rotations (open hand, fist, Thera-Band), band pull-aparts, internal rotation (therapist approval flagged), thoracic circles hugging a block, seated oblique rollback. Sets, 2 s out / 3 s back tempo and set rests are built in.
 - **Builder** – compose a custom routine: pick exercises, reorder, change reps/seconds and rest.
 - **Progress** – streak, sessions, minutes, last 7 days.
 - **Settings** – countdown and rest lengths, sound, vibration, screen wake lock, light/dark theme, install help, reset.
 
 Everything is stored locally on the device (localStorage). No accounts, no tracking, no backend.
+
+## Version archive
+
+Every major version stays online at `archive/` so the evolution of the product can be walked
+through: `archive/v1/` is the first release, frozen (own local data, no service worker).
+The current version always lives at the root.
+
+## Not indexed
+
+`robots.txt` disallows all crawlers, including the AI training and search bots (GPTBot, ClaudeBot,
+Google-Extended, PerplexityBot, CCBot and others), and every page carries
+`<meta name="robots" content="noindex, nofollow, noarchive, noimageindex, noai, noimageai">`.
+GitHub Pages cannot send custom response headers, so this is as far as a static host can go;
+the app is also not linked from anywhere.
 
 ## Tech
 
@@ -32,7 +47,9 @@ css/app.css             components, layout, player, illustration animations
 js/app.js               router + tab bar + SW registration
 js/data/exercises.js    ← the exercise library (edit this)
 js/data/routines.js     ← built-in routines (edit this)
-js/illustrations.js     animated SVG figures
+js/illustrations.js     animated flat-vector SVG figures (SMIL timelines)
+archive/                version archive (archive/v1 = frozen first release)
+robots.txt              blocks search engines and AI crawlers
 js/views/*.js           screens (home, routine, player, library, exercise, builder, history, settings)
 js/store.js             localStorage (settings, custom routines, history)
 js/audio.js             WebAudio beeps + haptics
@@ -67,7 +84,11 @@ Edit `js/data/exercises.js`. Each exercise looks like:
   name: 'Arm circles – open palm',
   area: 'shoulders',                 // shoulders | back | neck | hips  (add more in AREAS)
   mode: 'reps', reps: 12, tempo: 2.5,// or: mode: 'time', duration: 30
+  tempoOut: 1,                       // optional: seconds "out"; the rest of tempo is the slow return
+  sets: 2,                           // optional: repeats with a set rest in between
   sides: false,                      // true → done left then right
+  sideLabels: ['Clockwise', 'Counter-clockwise'], // optional labels for the two passes
+  caution: 'Only if approved…',      // optional warning shown in the player
   illustration: 'arm-circle',        // key from js/illustrations.js
   options: { hand: 'open', direction: 1 },
   summary: 'Straight arms, palms open, full circles from the shoulder.',
@@ -76,8 +97,9 @@ Edit `js/data/exercises.js`. Each exercise looks like:
 ```
 
 Available illustration keys: `shoulder-roll`, `arm-circle`, `scapula-squeeze`, `arm-raise`,
-`forward-fold`, `fold-hold`, `trunk-rotation`, `neck-rotation`, `cat-cow`, `side-bend`,
-`childs-pose`, `open-book`, `neck-tilt`, `chin-tuck`, `hip-circle`, `lunge-hold`, `hold`.
+`ext-rotation`, `band-ext-rotation`, `band-int-rotation`, `band-pull-apart`, `block-circles`,
+`seated-rollback`, `forward-fold`, `fold-hold`, `trunk-rotation`, `neck-rotation`, `cat-cow`,
+`side-bend`, `childs-pose`, `open-book`, `neck-tilt`, `chin-tuck`, `hip-circle`, `lunge-hold`, `hold`.
 
 To use your own drawing or animation instead, drop a file into `assets/exercises/` and set
 `image: 'assets/exercises/my-exercise.svg'` (SVG, PNG, GIF or animated SVG all work).

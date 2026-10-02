@@ -58,11 +58,6 @@ export function settingsView(root) {
           <button class="btn btn--secondary btn--sm" data-action="update">Check for update</button>
         </div>
         <div class="setting">
-          <span style="color:var(--c-text-2)">${icon('history')}</span>
-          <span class="setting__label">Version history<small>Every previous version stays online</small></span>
-          <a class="btn btn--secondary btn--sm" href="./archive/">Archive</a>
-        </div>
-        <div class="setting">
           <span style="color:var(--c-danger)">${icon('trash')}</span>
           <span class="setting__label">Reset app data<small>Removes custom routines, history and settings on this device</small></span>
           <button class="btn btn--danger btn--sm" data-action="reset">Reset</button>
@@ -91,7 +86,7 @@ export function settingsView(root) {
   });
   root.querySelector('[data-action="install"]')?.addEventListener('click', promptInstall);
   root.querySelector('[data-action="update"]').addEventListener('click', async () => {
-    const reg = await navigator.serviceWorker?.getRegistration();
+    const reg = null;
     if (!reg) return toast('Offline mode is not active in this browser');
     await reg.update(); toast(reg.waiting ? 'Update ready – reloading' : 'You are up to date');
     if (reg.waiting) { reg.waiting.postMessage({ type: 'SKIP_WAITING' }); setTimeout(() => location.reload(), 400); }

@@ -1,5 +1,5 @@
 import { getRoutine, expandRoutine } from '../data/routines.js';
-import { getExercise, sideLabels } from '../data/exercises.js';
+import { getExercise } from '../data/exercises.js';
 import { store } from '../store.js';
 import { icon } from '../icons.js';
 import { illustration } from '../illustrations.js';
@@ -37,7 +37,6 @@ export function playerView(root, [id]) {
     activeMs: 0,
     stepsDone: 0,
     saved: false,
-    setRest: false,
   };
   let timer = null;
   let wakeLock = null;
@@ -51,7 +50,7 @@ export function playerView(root, [id]) {
     const step = steps[S.i];
     if (phase === 'ready') S.total = readySeconds;
     else if (phase === 'active') S.total = step.seconds;
-    else if (phase === 'rest') S.total = S.setRest ? step.setRest : restSeconds;
+    else if (phase === 'rest') S.total = restSeconds;
     else S.total = 0;
     if (phase === 'ready' && S.total === 0) return enter('active');
     if (phase === 'rest' && S.total === 0) return enter('ready', S.i + 1);
@@ -64,21 +63,20 @@ export function playerView(root, [id]) {
     else if (S.phase === 'active') {
       S.stepsDone = Math.max(S.stepsDone, S.i + 1);
       if (S.i >= steps.length - 1) enter('done');
-      else if (steps[S.i].setRest > 0) { S.setRest = true; enter('rest'); }
-      else if (restSeconds > 0) { S.setRest = false; enter('rest'); }
+      else if (restSeconds > 0) enter('rest');
       else enter('ready', S.i + 1);
     } else if (S.phase === 'rest') enter('ready', S.i + 1);
   }
   function skip() {
     if (S.phase === 'done') return;
-    if (S.phase === 'rest') { S.setRest = false; return enter('ready', S.i + 1); }
+    if (S.phase === 'rest') return enter('ready', S.i + 1);
     if (S.i >= steps.length - 1) { S.stepsDone = Math.max(S.stepsDone, S.i + 1); return enter('done'); }
     enter('ready', S.i + 1);
   }
   function previous() {
     if (S.phase === 'done') return;
     if (S.phase === 'active' && S.elapsed > 2500) return enter('ready', S.i);
-    if (S.phase === 'rest') { S.setRest = false; return enter('ready', S.i); }
+    if (S.phase === 'rest') return enter('ready', S.i);
     enter('ready', Math.max(0, S.i - 1));
   }
   function togglePause(force) {
@@ -88,11 +86,6 @@ export function playerView(root, [id]) {
     if (dom.pauseBtn) { dom.pauseBtn.innerHTML = S.paused ? icon('play') : icon('pause'); dom.pauseBtn.setAttribute('aria-label', S.paused ? 'Resume' : 'Pause'); }
     dom.overlay?.classList.toggle('is-hidden', !S.paused);
     if (dom.overlay) dom.overlay.style.display = S.paused ? '' : 'none';
-    root.querySelectorAll('svg.ill').forEach((svg) => { try { S.paused ? svg.pauseAnimations() : svg.unpauseAnimations(); } catch {} });
-  }
-  /** restart the main figure's timeline so the animation starts with the rep counter */
-  function syncIllustration() {
-    root.querySelectorAll('.player__ill svg.ill').forEach((svg) => { try { svg.setCurrentTime(0); } catch {} });
   }
 
   // ----- timer -----
@@ -126,7 +119,7 @@ export function playerView(root, [id]) {
     for (let k = S.i; k < steps.length; k++) {
       if (k === S.i) { if (S.phase === 'ready') s += steps[k].seconds; }
       else s += readySeconds + steps[k].seconds;
-      if (k < steps.length - 1 && !(k === S.i && S.phase === 'rest')) s += steps[k].setRest > 0 ? steps[k].setRest : restSeconds;
+      if (k < steps.length - 1 && !(k === S.i && S.phase === 'rest')) s += restSeconds;
     }
     return s;
   }
@@ -136,12 +129,9 @@ export function playerView(root, [id]) {
     if (S.phase === 'done') { renderDone(); return; }
     const showStep = S.phase === 'rest' ? steps[S.i + 1] : step;
     const ex = showStep.exercise;
-    const phaseLabel = S.phase === 'ready' ? 'Get ready' : S.phase === 'rest' ? (S.setRest ? 'Rest between sets' : 'Rest') : `Exercise ${S.i + 1}`;
+    const phaseLabel = S.phase === 'ready' ? 'Get ready' : S.phase === 'rest' ? 'Rest' : `Exercise ${S.i + 1}`;
     const next = S.phase === 'rest' ? null : steps[S.i + 1];
-    const labels = sideLabels(ex);
-    const sideChip = (showStep.side ? `<span class="chip ${showStep.side === 'left' ? 'is-active' : 'chip--accent'}">${esc(showStep.side === 'left' ? labels[0] : labels[1])}</span>` : '')
-      + (showStep.sets > 1 ? `<span class="chip">Set ${showStep.set} of ${showStep.sets}</span>` : '');
-    const caution = ex.caution ? `<div class="caution mt-2">${icon('info')}<span>${esc(ex.caution)}</span></div>` : '';
+    const sideChip = showStep.side ? `<span class="chip ${showStep.side === 'left' ? 'is-active' : 'chip--accent'}">${showStep.side === 'left' ? 'Left side' : 'Right side'}</span>` : '';
 
     root.innerHTML = `
       <div class="player player--${S.phase} ${S.paused ? 'player--paused' : ''}">
@@ -159,13 +149,12 @@ export function playerView(root, [id]) {
             <div class="player__phase">${phaseLabel}${S.phase === 'rest' ? ' · up next' : ''}</div>
             <div class="player__name">${esc(ex.name)}</div>
             <div class="player__side">${sideChip}</div>
-            ${caution}
           </div>
           <div class="player__clock">
             ${S.phase === 'active' && showStep.mode === 'reps' ? `
               <div class="rep-ring"><svg viewBox="0 0 100 100"><circle class="track" cx="50" cy="50" r="44"/><circle class="fill" cx="50" cy="50" r="44" data-ring stroke-dasharray="276.5" stroke-dashoffset="276.5"/></svg>
                 <div style="position:absolute;inset:0;display:grid;place-items:center"><span class="clock" style="font-size:2.6rem" data-rep>1</span></div></div>
-              <div class="clock__sub"><span data-rep-of>of ${showStep.reps} reps</span> · <span data-clock>${fmtClock(S.total)}</span> left${showStep.tempoOut ? ` · <span class="tempo-tag" data-tempo>out</span>` : ''}</div>`
+              <div class="clock__sub"><span data-rep-of>of ${showStep.reps} reps</span> · <span data-clock>${fmtClock(S.total)}</span> left</div>`
             : `<div class="clock ${S.phase !== 'active' ? 'clock--ready' : ''}" data-clock>${S.phase === 'active' ? fmtClock(S.total) : Math.ceil(S.total)}</div>
                <div class="clock__sub">${S.phase === 'active' ? 'seconds remaining' : S.phase === 'ready' ? `${showStep.mode === 'time' ? showStep.duration + ' s' : showStep.reps + ' reps'}${showStep.side ? ' · ' + showStep.side : ''} · starting soon` : 'breathe · shake it out'}</div>`}
             <ul class="player__cues mt-4" data-cues>${ex.cues.map((c, k) => `<li class="${k === 0 ? 'is-active' : ''}">${esc(c)}</li>`).join('')}</ul>
@@ -190,9 +179,7 @@ export function playerView(root, [id]) {
       seg: root.querySelector(`[data-seg="${S.i}"]`),
       pauseBtn: root.querySelector('[data-pause]'),
       overlay: root.querySelector('[data-overlay]'),
-      tempo: root.querySelector('[data-tempo]'),
     };
-    if (S.phase === 'active') syncIllustration();
     if (S.paused) togglePause(true);
     root.querySelectorAll('[data-action]').forEach((b) => b.addEventListener('click', (e) => {
       const a = b.dataset.action;
@@ -215,11 +202,6 @@ export function playerView(root, [id]) {
         if (dom.rep) dom.rep.textContent = rep;
         if (dom.ring) dom.ring.style.strokeDashoffset = (276.5 * (1 - within)).toFixed(1);
         if (dom.clock) dom.clock.textContent = fmtClock(remaining);
-        if (dom.tempo && step.tempoOut) {
-          const out = within * step.tempo < step.tempoOut;
-          const label = out ? 'out' : 'back';
-          if (dom.tempo.textContent !== label) { dom.tempo.textContent = label; dom.tempo.className = `tempo-tag ${out ? 'is-out' : 'is-back'}`; }
-        }
       } else if (dom.clock) dom.clock.textContent = fmtClock(remaining);
       if (dom.seg) dom.seg.style.setProperty('--p', Math.min(1, S.elapsed / 1000 / S.total).toFixed(3));
       if (dom.cues.length > 1) {

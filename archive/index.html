@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow, noarchive, noimageindex, noai, noimageai">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Mobility · version archive</title>
+  <link rel="icon" href="../icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/app.css">
+  <style>
+    .wrap { max-width: 720px; margin: 0 auto; padding: var(--sp-8) var(--gutter) var(--sp-12); }
+    .timeline { position: relative; margin-top: var(--sp-6); padding-left: 28px; }
+    .timeline::before { content: ""; position: absolute; left: 9px; top: 6px; bottom: 6px; width: 2px; background: var(--c-border-strong); }
+    .ver { position: relative; margin-bottom: var(--sp-6); }
+    .ver::before { content: ""; position: absolute; left: -24px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: var(--c-surface); border: 3px solid var(--c-text-3); }
+    .ver.is-current::before { border-color: var(--c-primary); background: var(--c-primary); }
+    .ver h2 { font-size: var(--fs-xl); display: flex; align-items: center; gap: var(--sp-2); flex-wrap: wrap; }
+    .ver .date { font-size: var(--fs-sm); color: var(--c-text-2); font-weight: var(--fw-regular); }
+    .ver ul { margin: var(--sp-3) 0; padding-left: 18px; list-style: disc; color: var(--c-text-2); font-size: var(--fs-sm); }
+    .ver .row { margin-top: var(--sp-3); flex-wrap: wrap; }
+    .shots { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-2); margin-top: var(--sp-3); }
+    .shots img { width: 100%; border-radius: var(--r-md); border: 1px solid var(--c-border); display: block; background: var(--c-surface-2); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a href="../" class="btn btn--secondary btn--sm">← Current app</a>
+    <h1 class="mt-6">Version archive</h1>
+    <p class="muted mt-2">Every major version of Mobility stays online so the evolution of the product can be walked through. Archived versions are frozen: they keep their own local data and never update.</p>
+
+    <div class="timeline">
+      <div class="ver is-current">
+        <h2>Version 2 <span class="tag" style="background:var(--c-primary-soft);color:var(--c-primary-text)">current</span> <span class="date">October 2026</span></h2>
+        <ul>
+          <li>New illustration style: flat vector characters on soft blobs, with hair, clothing and props (band, door anchor, yoga block).</li>
+          <li>Animations rebuilt as SMIL timelines so every figure restarts in sync with the rep counter and freezes on pause.</li>
+          <li>Seven post-surgery pec rehab exercises: external rotations (open hand, fist, band), band pull-aparts, internal rotation, thoracic circles with a block, seated oblique rollback.</li>
+          <li>Sets, asymmetric tempo (2 s out / 3 s back) and therapist-approval cautions in the player.</li>
+          <li>No-index rules for search engines and AI crawlers; this archive.</li>
+        </ul>
+        <div class="row"><a class="btn btn--primary btn--sm" href="../">Open v2</a><a class="btn btn--ghost btn--sm" href="../design.html">Design system</a></div>
+      </div>
+
+      <div class="ver">
+        <h2>Version 1 <span class="date">25 September 2026</span></h2>
+        <ul>
+          <li>First release: home with Quick reset, Full physio session and Desk break; custom routine builder; progress and settings.</li>
+          <li>Freeletics-style player with get-ready countdown, rep pacer, hold timer, rest phases, rotating cues, sound and vibration.</li>
+          <li>21 exercises drawn as monochrome line figures with CSS keyframe animations.</li>
+          <li>Installable PWA with offline support and GitHub Pages deployment.</li>
+        </ul>
+        <div class="shots">
+          <img src="v1/shots/home.png" alt="v1 home screen" loading="lazy">
+          <img src="v1/shots/player.png" alt="v1 player screen" loading="lazy">
+          <img src="v1/shots/library.png" alt="v1 library screen" loading="lazy">
+        </div>
+        <div class="row"><a class="btn btn--secondary btn--sm" href="v1/">Open v1</a><a class="btn btn--ghost btn--sm" href="v1/design.html">v1 design system</a></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

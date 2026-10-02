@@ -32,6 +32,7 @@ const ASSETS = [
   './icons/icon-512.png',
   './icons/icon-maskable-512.png',
   './icons/apple-touch-icon.png',
+  './robots.txt',
 ];
 
 self.addEventListener('install', (event) => {

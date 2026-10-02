@@ -147,8 +147,7 @@ svg { display: block; }
 .routine-card--full { background: var(--grad-full); }
 .routine-card--break { background: var(--grad-break); }
 .routine-card--custom { background: var(--grad-custom); }
-.routine-card--rehab { background: var(--grad-rehab); }
-.routine-card__art { position: absolute; right: 4px; top: -4px; width: 150px; height: 150px; opacity: 0.28; pointer-events: none; }
+.routine-card__art { position: absolute; right: -8px; top: -8px; width: 150px; height: 150px; opacity: 0.22; pointer-events: none; }
 .routine-card__art svg { width: 100%; height: 100%; }
 .routine-card__kind { font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: var(--ls-caps); font-weight: var(--fw-semibold); opacity: 0.85; }
 .routine-card__name { font-size: var(--fs-xl); font-weight: var(--fw-bold); line-height: 1.15; }
@@ -346,8 +345,7 @@ svg { display: block; }
 .player__info { text-align: center; }
 .player__phase { color: var(--phase-color); font-weight: var(--fw-bold); text-transform: uppercase; letter-spacing: var(--ls-caps); font-size: var(--fs-xs); }
 .player__name { font-size: var(--fs-xl); font-weight: var(--fw-bold); margin-top: 4px; line-height: 1.2; }
-.player__side { margin-top: var(--sp-2); display: flex; gap: var(--sp-2); justify-content: center; flex-wrap: wrap; }
-.player__side:empty { display: none; }
+.player__side { margin-top: var(--sp-2); }
 .player__clock { text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
 .clock {
   font-family: var(--font-display); font-size: clamp(3rem, 14vh, 6rem); font-weight: var(--fw-bold);
@@ -393,16 +391,6 @@ svg { display: block; }
 .player--paused .player__ill { opacity: 0.6; }
 .paused-overlay { position: absolute; inset: 0; display: grid; place-items: center; background: rgba(11,16,15,0.35); color: #fff; font-weight: var(--fw-bold); font-size: var(--fs-xl); letter-spacing: 0.04em; border-radius: var(--r-lg); backdrop-filter: blur(2px); }
 
-/* Caution (therapist approval etc.) */
-.caution { display: flex; gap: var(--sp-2); align-items: flex-start; padding: var(--sp-2) var(--sp-3); border-radius: var(--r-md); background: rgba(245, 165, 36, 0.14); color: #8A5A00; font-size: var(--fs-sm); text-align: left; }
-.caution svg { flex: 0 0 18px; width: 18px; height: 18px; margin-top: 2px; }
-:root[data-theme="dark"] .caution, :root:not([data-theme="light"]) .caution { color: var(--amber-300); }
-@media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) .caution { color: #8A5A00; } }
-.player .caution { margin: 0 auto; max-width: 420px; }
-.tempo-tag { display: inline-flex; align-items: center; gap: 4px; font-size: var(--fs-xs); font-weight: var(--fw-semibold); text-transform: uppercase; letter-spacing: var(--ls-caps); color: var(--c-text-3); }
-.tempo-tag.is-out { color: var(--c-primary-text); }
-.tempo-tag.is-back { color: var(--indigo-500); }
-
 /* Done screen */
 .done { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: var(--sp-6) var(--gutter); gap: var(--sp-4); max-width: 480px; margin: 0 auto; width: 100%; }
 .done__check { width: 104px; height: 104px; border-radius: 50%; background: var(--c-primary); color: #fff; display: grid; place-items: center; box-shadow: var(--shadow-brand); animation: pop var(--dur-slow) var(--ease-out); }
@@ -411,47 +399,52 @@ svg { display: block; }
 .done h1 { font-size: var(--fs-3xl); }
 .done .stats { width: 100%; }
 
-/* ---------- ILLUSTRATIONS (v2 flat characters) ---------- */
-.ill { display: block; }
-.ill .bl { fill: var(--ill-blob); }
-.ill .lf { fill: var(--ill-leaf); }
-.ill .lfv { stroke: var(--ill-leaf-vein); stroke-width: 2; fill: none; stroke-linecap: round; }
-.ill .sdw { fill: var(--ill-shadow); }
-.ill .mat { fill: var(--ill-mat); opacity: 0.85; }
-.ill .sk { fill: var(--ill-skin); stroke: var(--ill-skin); }
-.ill .sk2 { fill: var(--ill-skin-2); stroke: var(--ill-skin-2); }
-.ill .hr { fill: var(--ill-hair); }
-.ill .sh { fill: var(--ill-shirt); stroke: var(--ill-shirt); }
-.ill .sh2 { fill: var(--ill-shirt-2); }
-.ill .pt { fill: none; stroke: var(--ill-pants); stroke-width: 15; stroke-linecap: round; stroke-linejoin: round; }
-.ill rect.pt, .ill ellipse.pt { fill: var(--ill-pants); stroke: none; }
-.ill .pt2 { fill: var(--ill-pants-2); stroke: var(--ill-pants-2); stroke-width: 15; stroke-linecap: round; stroke-linejoin: round; }
-.ill rect.pt2 { stroke: none; }
-.ill path.pt2 { fill: none; }
-.ill .so { fill: var(--ill-shoe); }
-.ill .so2 { fill: var(--ill-shoe-2); }
-.ill .sole { stroke: var(--ill-sole); stroke-width: 2.5; stroke-linecap: round; fill: none; }
-.ill .fng { stroke: var(--ill-skin-2); stroke-width: 2.4; stroke-linecap: round; fill: none; }
-.ill .seam { stroke: var(--ill-shirt-2); stroke-width: 2; stroke-dasharray: 3 4; fill: none; }
-.ill .blade { stroke: var(--ill-prop); stroke-width: 4; stroke-linecap: round; fill: none; }
-.ill .elbow { stroke: var(--ill-arrow); stroke-width: 2.5; stroke-linecap: round; fill: none; opacity: 0.8; }
-.ill .block { fill: var(--ill-prop); }
-.ill .door { fill: var(--ill-door); }
-.ill .door2 { fill: var(--ill-door-2); }
-.ill .knob { fill: var(--ill-prop); }
-.ill .bd { stroke: var(--ill-band); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; fill: none; }
-.ill .ar { stroke: var(--ill-arrow); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; fill: none; }
-.ill .cap { font-family: var(--font-sans); font-size: 10px; fill: var(--ill-caption); }
-.ill .ln10 { stroke-width: 10; } .ill .ln11 { stroke-width: 11; } .ill .ln14 { stroke-width: 14; } .ill .ln16 { stroke-width: 16; } .ill .ln24 { stroke-width: 24; } .ill .ln26 { stroke-width: 26; }
-.ill path.ln10, .ill path.ln11, .ill path.ln14, .ill path.ln16, .ill path.ln24, .ill path.ln26 { fill: none; stroke-linecap: round; stroke-linejoin: round; }
-.ill path.sh.ln26, .ill path.sh.ln24, .ill path.sh.ln14 { stroke: var(--ill-shirt); }
-/* monochrome variant for routine cards */
-.ill--mono * { fill: #fff !important; stroke: #fff !important; }
-.ill--mono path.sk, .ill--mono path.sk2, .ill--mono path.sh, .ill--mono path.pt, .ill--mono path.pt2 { fill: none !important; }
-.ill--mono .bl, .ill--mono .lf, .ill--mono .sdw { display: none; }
-.ill--image { width: 100%; height: 100%; object-fit: contain; }
+/* ---------- ILLUSTRATION ANIMATIONS ---------- */
+.ill { --tempo: 3s; color: var(--ill-stroke); }
+.ill .stroke { stroke: currentColor; fill: none; stroke-width: 9; stroke-linecap: round; stroke-linejoin: round; }
+.ill .thin { stroke-width: 5; }
+.ill .fill { fill: currentColor; }
+.ill .accent { stroke: var(--ill-accent); }
+.ill .accent-fill { fill: var(--ill-accent); }
+.ill .muted { stroke: var(--ill-muted); }
+.ill .muted-fill { fill: var(--ill-muted); }
+.ill .floor { stroke: var(--ill-muted); stroke-width: 4; stroke-dasharray: 2 10; }
+.ill [class*="anim-"] { animation-duration: var(--tempo); animation-iteration-count: infinite; animation-timing-function: ease-in-out; transform-box: view-box; }
+.ill .anim-spin { animation-name: ill-spin; animation-timing-function: linear; }
+.ill .anim-spin-rev { animation-name: ill-spin-rev; animation-timing-function: linear; }
+.ill .anim-fold { animation-name: ill-fold; }
+.ill .anim-hang { animation-name: ill-hang; }
+.ill .anim-twist { animation-name: ill-twist; }
+.ill .anim-tilt { animation-name: ill-tilt; }
+.ill .anim-bend { animation-name: ill-bend; }
+.ill .anim-tuck { animation-name: ill-tuck; }
+.ill .anim-squeeze-l { animation-name: ill-squeeze-l; }
+.ill .anim-squeeze-r { animation-name: ill-squeeze-r; }
+.ill .anim-breathe { animation-name: ill-breathe; animation-duration: calc(var(--tempo) * 1.4); }
+.ill .anim-pulse { animation-name: ill-pulse; }
+.ill .anim-reach { animation-name: ill-reach; }
+.ill .anim-nod { animation-name: ill-nod; }
+.ill .anim-raise { animation-name: ill-raise; }
+.ill .anim-raise-mirror { animation-name: ill-raise-mirror; }
+@keyframes ill-spin { to { transform: rotate(360deg); } }
+@keyframes ill-spin-rev { to { transform: rotate(-360deg); } }
+@keyframes ill-fold { 0%, 8% { transform: rotate(0deg); } 45%, 58% { transform: rotate(-82deg); } 92%, 100% { transform: rotate(0deg); } }
+@keyframes ill-hang { 0%, 8% { transform: rotate(0deg); } 45%, 58% { transform: rotate(82deg); } 92%, 100% { transform: rotate(0deg); } }
+@keyframes ill-twist { 0% { transform: rotate(0deg); } 25% { transform: rotate(50deg); } 50% { transform: rotate(0deg); } 75% { transform: rotate(-50deg); } 100% { transform: rotate(0deg); } }
+@keyframes ill-tilt { 0% { transform: rotate(0deg); } 25% { transform: rotate(28deg); } 50% { transform: rotate(0deg); } 75% { transform: rotate(-28deg); } 100% { transform: rotate(0deg); } }
+@keyframes ill-bend { 0% { transform: rotate(0deg); } 25% { transform: rotate(22deg); } 50% { transform: rotate(0deg); } 75% { transform: rotate(-22deg); } 100% { transform: rotate(0deg); } }
+@keyframes ill-tuck { 0%, 10% { transform: translateX(0); } 45%, 60% { transform: translateX(14px); } 90%, 100% { transform: translateX(0); } }
+@keyframes ill-squeeze-l { 0%, 10% { transform: translateX(0); } 45%, 60% { transform: translateX(9px); } 90%, 100% { transform: translateX(0); } }
+@keyframes ill-squeeze-r { 0%, 10% { transform: translateX(0); } 45%, 60% { transform: translateX(-9px); } 90%, 100% { transform: translateX(0); } }
+@keyframes ill-breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.035); } }
+@keyframes ill-pulse { 0%, 100% { opacity: 0.35; } 50% { opacity: 1; } }
+@keyframes ill-reach { 0%, 10% { transform: translateY(0); } 45%, 60% { transform: translateY(-14px); } 90%, 100% { transform: translateY(0); } }
+@keyframes ill-nod { 0%, 10% { transform: rotate(0deg); } 45%, 60% { transform: rotate(-30deg); } 90%, 100% { transform: rotate(0deg); } }
+@keyframes ill-raise { 0%, 8% { transform: rotate(0deg); } 45%, 58% { transform: rotate(-165deg); } 92%, 100% { transform: rotate(0deg); } }
+@keyframes ill-raise-mirror { 0%, 8% { transform: rotate(0deg); } 45%, 58% { transform: rotate(165deg); } 92%, 100% { transform: rotate(0deg); } }
 
 @media (prefers-reduced-motion: reduce) {
+  .ill [class*="anim-"] { animation-duration: calc(var(--tempo) * 2.5); }
   .page { animation: none; }
 }
 .ill .anim-open { animation-name: ill-open; }

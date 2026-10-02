@@ -68,40 +68,17 @@
 
   --c-nav-bg:        rgba(255, 255, 255, 0.86);
 
-  /* Illustration colours (v2 flat characters) */
-  --ill-bg:          #FFFFFF;
-  --ill-blob:        #D9F2EC;
-  --ill-leaf:        #B3E4D7;
-  --ill-leaf-vein:   #8FD3C1;
-  --ill-shadow:      rgba(15, 156, 134, 0.14);
-  --ill-skin:        #F1C4A0;
-  --ill-skin-2:      #E2A77F;
-  --ill-hair:        #2E2420;
-  --ill-shirt:       #0F9C86;
-  --ill-shirt-2:     #0B7F6E;
-  --ill-pants:       #2E3A59;
-  --ill-pants-2:     #243049;
-  --ill-shoe:        #1B2233;
-  --ill-shoe-2:      #343D55;
-  --ill-sole:        #FFFFFF;
-  --ill-band:        #F25C54;
-  --ill-prop:        #F5B942;
-  --ill-door:        #E4ECEA;
-  --ill-door-2:      #D1DDDA;
-  --ill-mat:         #7C8CF8;
-  --ill-arrow:       #0B7F6E;
-  --ill-caption:     var(--gray-400);
-  /* kept for the v1 archive and generic uses */
+  /* Illustration colours */
   --ill-stroke:      var(--gray-800);
   --ill-accent:      var(--teal-500);
   --ill-muted:       var(--gray-300);
+  --ill-bg:          var(--teal-50);
 
   /* Routine kinds (gradients) */
   --grad-quick: linear-gradient(135deg, #0F9C86 0%, #2BB89F 60%, #5FD3BD 100%);
   --grad-full:  linear-gradient(135deg, #4453D6 0%, #5B6CF0 55%, #7C8CF8 100%);
   --grad-break: linear-gradient(135deg, #E5522F 0%, #FF6B4A 55%, #FFA98F 100%);
   --grad-custom: linear-gradient(135deg, #36403F 0%, #4E5B5B 60%, #6D7C7C 100%);
-  --grad-rehab: linear-gradient(135deg, #B8336A 0%, #E0527E 55%, #FF8FA3 100%);
 
   /* --- Typography --- */
   --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -187,22 +164,7 @@
     --ill-stroke:      #E6EDEC;
     --ill-accent:      var(--teal-300);
     --ill-muted:       #3A4645;
-    --ill-bg:          #1A2322;
-    --ill-blob:        #223A36;
-    --ill-leaf:        #2C4F48;
-    --ill-leaf-vein:   #3B6A60;
-    --ill-shadow:      rgba(0, 0, 0, 0.35);
-    --ill-shirt:       #2BB89F;
-    --ill-shirt-2:     #1E9C86;
-    --ill-pants:       #4A5A82;
-    --ill-pants-2:     #3B4A6E;
-    --ill-shoe:        #0E1220;
-    --ill-shoe-2:      #1F2638;
-    --ill-sole:        #C9D3D1;
-    --ill-door:        #2C3634;
-    --ill-door-2:      #3A4644;
-    --ill-arrow:       #5FD3BD;
-    --ill-caption:     #6F7D7C;
+    --ill-bg:          #1B2524;
     --shadow-sm: 0 1px 2px rgba(0,0,0,0.4);
     --shadow-md: 0 6px 20px rgba(0,0,0,0.45);
     --shadow-lg: 0 18px 40px rgba(0,0,0,0.6);
@@ -229,22 +191,7 @@
   --ill-stroke:      #E6EDEC;
   --ill-accent:      var(--teal-300);
   --ill-muted:       #3A4645;
-  --ill-bg:          #1A2322;
-  --ill-blob:        #223A36;
-  --ill-leaf:        #2C4F48;
-  --ill-leaf-vein:   #3B6A60;
-  --ill-shadow:      rgba(0, 0, 0, 0.35);
-  --ill-shirt:       #2BB89F;
-  --ill-shirt-2:     #1E9C86;
-  --ill-pants:       #4A5A82;
-  --ill-pants-2:     #3B4A6E;
-  --ill-shoe:        #0E1220;
-  --ill-shoe-2:      #1F2638;
-  --ill-sole:        #C9D3D1;
-  --ill-door:        #2C3634;
-  --ill-door-2:      #3A4644;
-  --ill-arrow:       #5FD3BD;
-  --ill-caption:     #6F7D7C;
+  --ill-bg:          #1B2524;
   --shadow-sm: 0 1px 2px rgba(0,0,0,0.4);
   --shadow-md: 0 6px 20px rgba(0,0,0,0.45);
   --shadow-lg: 0 18px 40px rgba(0,0,0,0.6);

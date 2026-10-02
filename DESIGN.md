@@ -98,18 +98,33 @@ the rep ring stay in sync.
 | Tab bar | `.tabbar`, `.tab.is-active` | blurred, hidden while the player runs |
 | Player | `.player`, `.progress-seg`, `.clock`, `.rep-ring`, `.player__pause`, `.player__skip`, `.player__next` | phase colour via `--phase-color` (teal active, coral ready, indigo rest) |
 
-## Illustrations
+## Illustrations (v2)
 
-Figures are drawn in `js/illustrations.js` from a handful of primitives (head, capsule
-torso, round-capped limbs) in a 200 × 240 viewBox, using `currentColor` for the body,
-`--ill-accent` for the moving part and `--ill-muted` for what stays still. Three views:
+Flat vector characters in the spirit of modern physio / wellness illustration: a soft organic
+blob (`--ill-blob`) with two leaves behind a figure that has skin, hair, a brand-teal shirt,
+navy trousers and dark shoes with a white sole line. Props are a red Thera-Band
+(`--ill-band`), a yellow yoga block and door knob (`--ill-prop`), a door anchor and an indigo mat.
+All colours are tokens, so the dark theme simply swaps them.
 
-* **front** for symmetrical movements (arm circles, side bends, neck tilts)
-* **side** for sagittal movements (shoulder rolls, forward folds, chin tucks)
-* **top** for rotations (upper-body rotation, neck rotation, open book)
+Built in `js/illustrations.js` from primitives in a 240 × 240 viewBox: `headFront` / `headSide`
+/ `headTop`, `torsoFront` / `torsoSide`, `legsFront` / `legsSide`, and `arm()` as a two-joint chain
+(shoulder → elbow → hand) with open-palm, fist and grip hands. Three views:
 
-An accent arrow shows direction where it matters. To replace a figure with your own art,
-set `image: 'assets/exercises/<file>.svg'` on the exercise.
+* **front** for symmetrical and lateral movements (arm circles, raises, pull-aparts, side bends)
+* **side** for sagittal movements (shoulder rolls, forward folds, chin tucks, rollbacks)
+* **top** for rotations (upper-body rotation, neck rotation, open book), with a small caption
+
+Rotations with the elbow at the side (external / internal rotation) are shown from the front
+by foreshortening the forearm: it scales from short-and-inward (pointing at the viewer) to
+full-length outward, which is what the movement looks like in a mirror.
+
+Animation is SMIL. Timelines are sampled in JS (`tl`, `outBack`, `swing`, `spin`) so a band
+attached to a moving hand follows it exactly; `tempoOut` on an exercise gives the
+"2 s out, 3 s back" asymmetry. The player calls `svg.setCurrentTime(0)` when a rep timer starts
+and `pauseAnimations()` on pause, so figure and counter never drift.
+
+Teal arrows (`--ill-arrow`) mark direction where it matters. To replace a figure with your own
+art, set `image: 'assets/exercises/<file>.svg'` on the exercise.
 
 ## Icons
 
